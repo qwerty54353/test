@@ -1,0 +1,72 @@
+// ==UserScript==
+// @name         Tarvern No Avatars
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Replaces a webpage's CSS with custom CSS
+// @author       Your_Name_Here (optional)
+// @match        http://127.0.0.1:8000/
+// @grant        GM_addStyle
+// ==/UserScript==
+(function() {
+    'use strict';
+   // Add or modify this with YOUR custom CSS content.
+   const myCustomCSS = `
+.mes .avatar img{
+  width: 0px;
+  height: 0px;
+   }
+.mes .avatar {
+  width: 0px;
+  height: 0px;
+   }
+.last_mes {
+  grid-template-columns: [checkbox] fit-content(60px) [avatar-leftswipe] 0px [name-mestext] auto [edit-rightswipe] 0px !important;
+    }
+.swipe_left {
+  left: 888px;
+  position: relative;
+  bottom: 2px;
+}
+.swipe_right {
+  left: -70px;
+  position: relative;
+  bottom: 10px;
+}
+	.swipe_right, .swipe_left {
+  height: 40px;
+  width: 40px;
+  opacity: 0.3;
+  right: 5px;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  grid-row-start: 1;
+  grid-column-start: 0;
+  flex-flow: row-reverse;
+  font-size: 20px;
+}
+	.mes {
+  display: grid;
+  grid-template-columns: min-content min-content auto min-content;
+  padding: 10px 0px 0 0px;
+	}
+	.last_mes .mes_edit, .last_mes .mes_edit_buttons, .last_mes .mes_stop {
+  grid-row-start: 1;
+  position: relative;
+  right: 0px;
+}
+	.swipes-counter {
+  color: white;
+		font-size: 16px;}
+.mes_text {
+	font-weight: 500;
+	line-height: calc(var(--mainFontSize) + .25rem);
+	word-wrap: break-word;
+}
+.flex-container {
+    align-items: center;
+}
+   `;
+   // Inject your custom style on the website
+  GM_addStyle(myCustomCSS);
+})();
